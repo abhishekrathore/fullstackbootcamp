@@ -20,6 +20,8 @@ app.get("/login",(req,res)=>{
     res.send("<form>Username<input type='text'></form>");
 })
 
-
+app.get("/hello",(req,res)=>{ 
+    res.send("hello");
+})
 
 app.listen(8080,()=>{console.log("server started")})

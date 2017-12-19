@@ -17,14 +17,14 @@ class App extends Component {
   }
 
   getData(ref){
-    let root = 'http://jsonplaceholder.typicode.com';
+    let root = 'http://localhost:8080/hello';
     
     $.ajax({
-      url: root + '/posts',
+      url: root,
       method: 'GET'
     }).then(function(data) {
       ref.setState({
-        sports:data.map(post=>post.title)
+        sports:data.map(post=>post.name)
       })
     });
   }
