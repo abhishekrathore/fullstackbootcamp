@@ -11,7 +11,7 @@ const database = "nodeData"
 const session = require('express-session');
 
 app.use(cors())
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
+app.use(session({ secret: 'keyboard cat', resave : true, cookie: { maxAge: 60000 }}))
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -48,6 +48,7 @@ app.post("/students",(req,res)=>{
         res.json(doc);
         req.session.name = doc.name
         req.session.age = doc.age
+        req.session.save();
 
     });
     
