@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   getData(ref){
-    let root = 'http://localhost:8080/hello';
+    let root = 'http://localhost:8080/students';
     
     $.ajax({
       url: root,
@@ -33,6 +33,14 @@ class App extends Component {
   addSport(newSport){
     let sportsList = this.state.sports
     sportsList.push(newSport)
+    $.post({
+      url: 'http://localhost:8080/students',
+      data: {
+          name : newSport,
+          age:10
+      }
+      
+    });
     this.setState({
       sports:sportsList
     })

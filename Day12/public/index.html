@@ -1,0 +1,63 @@
+<html>
+    <head>
+        Hello world
+        <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>This is static page</h1>
+        <button onclick="getStudents()">Get all students</button>
+        <ul id="studentList">
+        </ul>
+        <form action="/students" method="GET">
+            <input type="text" name="user"><br>
+            <input type="submit">
+        </form>
+        DELETE form
+        <form action="/deleteStudents" method="GET">
+            <input type="text" name="user"><br>
+            <input type="submit">
+        </form>
+
+        <div>
+            <input id="name" type="text" name="name"><br>
+            <input id="age" type="number" name="age"><br>
+            <button onclick="setStudent()">Create</button>
+        </div>
+        <script>
+            function getStudents(){
+                $.get({
+                    url: '/students',
+                    success: function(data){
+                         console.log(data)
+                         for(var i=0;i<data.length;i++){
+                            $('#studentList').append('<li>'+data[i].name+'</li>')
+                         }
+                    }
+                  });
+            }
+            getStudents();
+
+            function setStudent(){
+                $.post({
+                    url: '/students',
+                    data: {
+                        name : $("#name").val(),
+                        age : $("#age").val()
+                    },
+                    success: function(data){
+                         console.log(data)
+                            $('#studentList').append('<li>'+data.name+'</li>')
+                         
+                    }
+                  });
+            }
+      
+        
+        
+        
+        </script>
+    </body>
+</html>
